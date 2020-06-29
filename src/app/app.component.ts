@@ -13,19 +13,7 @@ export class AppComponent {
 
   actions: NotificationAction[] = [];
 
-  constructor() {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(registration => {
-            // console.log('Service worker registered', registration.scope);
-          })
-          .catch(err => {
-            console.log('Error while registering service worker', err);
-          })
-      });
-    }
-  }
+  constructor() { }
 
   private sendNotification() {
     const options: NotificationOptions = {
