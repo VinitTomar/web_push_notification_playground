@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Play with Notifications</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card class="form-card">
+
+  <mat-label>Title</mat-label>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="title" [(ngModel)]="title">
+  </mat-form-field>
+
+  <mat-label>Body</mat-label>
+  <mat-form-field appearance="outline">
+    <textarea matInput placeholder="body" [(ngModel)]="message" rows="5"></textarea>
+  </mat-form-field>
+
+
+  <mat-label>Icon</mat-label>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="icon" [(ngModel)]="icon">
+  </mat-form-field>
+
+  <mat-label>Badge</mat-label>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="badge" [(ngModel)]="badge">
+  </mat-form-field>
+
+  <ng-container *ngFor="let actn of actions;index as i">
+    <div class="row">
+      <mat-label>Action {{i+1}}:</mat-label>
+      <button mat-icon-button class="btn-remove" color="warn" (click)="removeAction(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="name" [(ngModel)]="actn.title">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Icon</mat-label>
+        <input matInput placeholder="icon" [(ngModel)]="actn.icon">
+      </mat-form-field>
+    </div>
+  </ng-container>
+  <button mat-raised-button class="btn-add" color="accent" (click)="addAction()" [disabled]="this.actions.length >= 4">
+    <mat-icon>add</mat-icon>
+    <span>Action</span>
+  </button>
+
+
+  <button mat-raised-button color="primary" (click)="notifyMe()">Notify Me</button>
+</mat-card>
