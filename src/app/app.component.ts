@@ -9,7 +9,8 @@ export class AppComponent {
   title = '';
   message = '';
   icon = '';
-  badge = ''
+  badge = '';
+  image = '';
 
   actions: NotificationAction[] = [];
 
@@ -20,6 +21,7 @@ export class AppComponent {
       body: this.message || 'Here is your message',
       icon: this.icon || 'https://img.icons8.com/nolan/64/bell.png',
       badge: this.badge || "https://img.icons8.com/material-sharp/24/000000/bell.png",
+      image: this.image || 'https://cdn.pixabay.com/photo/2016/02/04/13/49/the-earth-1179212__340.png',
       actions: this.actions.map(act => {
         return {
           title: act.title,
