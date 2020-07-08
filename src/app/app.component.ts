@@ -68,15 +68,15 @@ export class AppComponent {
     // Otherwise, we need to ask the user for permission
     else if (Notification.permission !== "denied") {
       let ua = navigator.userAgent.toLowerCase();
-      if (ua.indexOf('safari') != -1) {
-        if (ua.indexOf('chrome') > -1) {
-          Notification.requestPermission()
-            .then((permission) => this._afterPermissionGranted(permission));
-        } else {
-          // Safari
-          Notification.requestPermission((permission) => this._afterPermissionGranted(permission));
-        }
-      }
+      Notification.requestPermission((permission) => this._afterPermissionGranted(permission));
+      // if (ua.indexOf('safari') != -1) {
+      //   if (ua.indexOf('chrome') > -1) {
+      //     Notification.requestPermission()
+      //       .then((permission) => this._afterPermissionGranted(permission));
+      //   } else {
+      //     // Safari
+      //   }
+      // }
 
     }
 
