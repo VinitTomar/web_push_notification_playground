@@ -67,15 +67,27 @@ export class AppComponent {
 
     // Otherwise, we need to ask the user for permission
     else if (Notification.permission !== "denied") {
-      Notification.requestPermission().then((permission) => {
-        // If the user accepts, let's create a notification
-        if (permission === "granted") {
-          this.sendNotification();
+      let ua = navigator.userAgent.toLowerCase();
+      if (ua.indexOf('safari') != -1) {
+        if (ua.indexOf('chrome') > -1) {
+          Notification.requestPermission()
+            .then((permission) => this._afterPermissionGranted(permission));
+        } else {
+          // Safari
+          Notification.requestPermission((permission) => this._afterPermissionGranted(permission));
         }
-      });
+      }
+
     }
 
     // At last, if the user has denied notifications, and you 
     // want to be respectful there is no need to bother them any more.
+  }
+
+  private _afterPermissionGranted(permission) {
+    // If the user accepts, let's create a notification
+    if (permission === "granted") {
+      this.sendNotification();
+    }
   }
 }
